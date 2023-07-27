@@ -4,7 +4,7 @@ This repository contains the source code for a 2D linear elastostatics solid sim
 <img height="150" alt="Screenshot 2023-07-27 at 00 47 04" src="https://github.com/christopheradnel414/2D-Elastic-Solid-DCPSE-Simulation/assets/41734037/013c7c04-f879-40f0-a56a-b835abb52dbb">
 <img height="150" alt="Screenshot 2023-07-27 at 00 47 52" src="https://github.com/christopheradnel414/2D-Elastic-Solid-DCPSE-Simulation/assets/41734037/e4c2e8d8-7a25-4079-9d84-170987da16a0">
 <img height="150" alt="Screenshot 2023-07-27 at 00 48 04" src="https://github.com/christopheradnel414/2D-Elastic-Solid-DCPSE-Simulation/assets/41734037/14dbed55-1557-40d8-a93b-aa8f45a55e76">
-<img width="712" alt="Screenshot 2023-07-27 at 00 49 32" src="https://github.com/christopheradnel414/2D-Elastic-Solid-DCPSE-Simulation/assets/41734037/e29db208-f614-41d9-a329-0b9ab0b48df3">
+<img height="150" alt="Screenshot 2023-07-27 at 00 49 32" src="https://github.com/christopheradnel414/2D-Elastic-Solid-DCPSE-Simulation/assets/41734037/e29db208-f614-41d9-a329-0b9ab0b48df3">
 
 
 This repository mainly consists of 3 parts:
@@ -23,6 +23,10 @@ The main Solver is written in C++ and utilizes the Eigen (https://eigen.tuxfamil
 3. Static Navier-Cauchy for Dirichlet Nodes (Displacement Boundary):
 <img height="70" alt="Screenshot 2023-07-27 at 00 42 58" src="https://github.com/christopheradnel414/2D-Elastic-Solid-DCPSE-Simulation/assets/41734037/34f4ac2b-c501-4d77-b175-994021ad1846">
 
-Notice that these Static Navier-Cauchy Equations 
+There are many methods that can be used to solve the Static Navier-Cauchy Equations (e.g, finite difference, finite element, SPH, etc) which I discussed in more detail on my journal (https://journals.itb.ac.id/index.php/jets/article/view/17606). Here, we are only interested in using DCPSE as our discretization method to solve the Navier-Cauchy equation. DCPSE operator as introduced by Schrader,2010 (https://publications.mpi-cbg.de/Schrader_2010_4838.pdf) approximates the value and spatial gradients of a field function as a linear combination of the neighbouring nodes function values. This is written as follows:
 
-Next, the solver will first compute the closest neighbours of each nodes by iterating through every possible node pairs and only considers node within the cutoff radius. 
+<img height="200" alt="Screenshot 2023-07-27 at 01 03 56" src="https://github.com/christopheradnel414/2D-Elastic-Solid-DCPSE-Simulation/assets/41734037/d503a3fb-bb3c-4904-a4cd-be936ec17188">
+
+The detail on the computation of the DCPSE operator is given on the journal. However, the main idea is that to approximate the spatial gradient at any particular point, it is simply the weighted sum of the neighbouring nodes' function value. The weights $\eta_{ij}$ can be easily computed as detailed on the journal and this leaves us only to solve the huge system of linear equations after discretizing the Navier-Cauchy equations using DCPSE. To solve this huge system system of equations, we are using Eigen library's sparse matrix solver capability.
+
+
