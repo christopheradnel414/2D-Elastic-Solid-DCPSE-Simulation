@@ -5,8 +5,8 @@ neighbour_search_method: 2
 cutoff_ratio_scale: 6.50001
 desired_neighbour_number: 30
 boundary_plot_method: 2
-linear_system_solver: 1
-iterative_solver_preconditioner: 1
+linear_system_solver: 2
+iterative_solver_preconditioner: 2
 iterative_solver_tolerance: 0.001
 iterative_solver_iteration_limit: 50000
 iterative_solver_multithreading_cpu: 6
