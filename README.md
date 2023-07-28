@@ -55,3 +55,6 @@ Here, geometry is represented as point clouds with annotations to denote whether
 # Result Plotter
 To visualize the results of the simulation, we are using the Matplotlib library in python. The visualization script is given in the result folder (ResultViewer.py).
 
+# Extension to 3D Domain
+This solver has been extended to 3D space domain and is publicly available on github (https://github.com/christopheradnel414/3D-Elastic-Solid-DCPSE-Simulation).
+
